@@ -1,0 +1,886 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  ChevronRight,
+  Globe,
+  Briefcase,
+  GraduationCap,
+  Code,
+  Database,
+  Cpu,
+  Tv,
+  Cloud,
+  Layers,
+  Sparkles,
+  Check,
+  Copy,
+  TrendingUp,
+  MessageSquare,
+  Bot,
+  MailPlus,
+  Coins,
+  Zap,
+  ArrowUpRight
+} from 'lucide-react';
+
+// Custom sub-components
+import Constellation from '../components/Constellation';
+import CronographMockup from '../components/CronographMockup';
+import InvoiceReaderMockup from '../components/InvoiceReaderMockup';
+import RequestAccessModal from '../components/RequestAccessModal';
+
+export default function PortfolioPage() {
+  // Modal states for Request Access
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState('');
+  
+  // Header active navigation states
+  const [activeSection, setActiveSection] = useState('projects');
+
+  // Copy email notification state
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('gabrielberto.dev@gmail.com');
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const triggerRequestAccess = (projectName: string) => {
+    setSelectedProject(projectName);
+    setModalOpen(true);
+  };
+
+  // Helper for scroll tracking to light up navbar correctly
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY + 120;
+      const projectsEl = document.getElementById('projects-section');
+      const aboutEl = document.getElementById('about-section');
+      const techEl = document.getElementById('tech-section');
+      const otherEl = document.getElementById('other-section');
+
+      if (projectsEl && scrollPos >= projectsEl.offsetTop && scrollPos < aboutEl!.offsetTop) {
+        setActiveSection('projects');
+      } else if (aboutEl && scrollPos >= aboutEl.offsetTop && scrollPos < techEl!.offsetTop) {
+        setActiveSection('about');
+      } else if (techEl && scrollPos >= techEl.offsetTop && scrollPos < otherEl!.offsetTop) {
+        setActiveSection('tech');
+      } else if (otherEl && scrollPos >= otherEl.offsetTop) {
+        setActiveSection('contact');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div className="relative min-h-screen bg-[#030712] selection:bg-sky-500/30 selection:text-sky-300 overflow-x-hidden" id="portfolio-root">
+      {/* Dynamic Background subtle grid or particle light glow */}
+      <div className="absolute top-0 left-0 right-0 h-[600px] bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-950/20 via-[#030712] to-transparent pointer-events-none" />
+
+      {/* STICKY NAVBAR */}
+      <header className="sticky top-0 z-40 bg-[#030712]/85 backdrop-blur-md border-b border-zinc-900/60 transition-all" id="portfolio-navbar">
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <motion.div 
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            <span className="font-extrabold tracking-tight text-white hover:text-sky-400 transition-colors text-base">
+              Gabriel Berto
+            </span>
+          </motion.div>
+
+          {/* Nav Items */}
+          <nav className="flex items-center gap-1 md:gap-4" id="nav-links-container">
+            <button 
+              onClick={() => scrollToSection('projects-section')}
+              className={`relative px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${activeSection === 'projects' ? 'text-zinc-100' : 'text-zinc-400 hover:text-zinc-200'}`}
+            >
+              Projects
+              {activeSection === 'projects' && (
+                <motion.div layoutId="nav-underline" className="absolute bottom-0 left-3 right-3 h-0.5 bg-blue-500" />
+              )}
+            </button>
+            <button 
+              onClick={() => scrollToSection('about-section')}
+              className={`relative px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${activeSection === 'about' ? 'text-zinc-100' : 'text-zinc-400 hover:text-zinc-200'}`}
+            >
+              About
+              {activeSection === 'about' && (
+                <motion.div layoutId="nav-underline" className="absolute bottom-0 left-3 right-3 h-0.5 bg-blue-500" />
+              )}
+            </button>
+            <button 
+              onClick={() => scrollToSection('tech-section')}
+              className={`relative px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${activeSection === 'tech' ? 'text-zinc-100' : 'text-zinc-400 hover:text-zinc-200'}`}
+            >
+              Tech Stack
+              {activeSection === 'tech' && (
+                <motion.div layoutId="nav-underline" className="absolute bottom-0 left-3 right-3 h-0.5 bg-blue-500" />
+              )}
+            </button>
+            <button 
+              onClick={() => scrollToSection('footer-section')}
+              className={`relative px-3 py-1.5 text-xs font-semibold rounded-md transition-colors ${activeSection === 'contact' ? 'text-zinc-100' : 'text-zinc-400 hover:text-zinc-200'}`}
+            >
+              Contact
+              {activeSection === 'contact' && (
+                <motion.div layoutId="nav-underline" className="absolute bottom-0 left-3 right-3 h-0.5 bg-blue-500" />
+              )}
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* CORE WRAPPER CONTROLLER */}
+      <main className="max-w-6xl mx-auto px-6 py-12 md:py-16 space-y-24" id="main-portfolio-content">
+        
+        {/* HERO SECTION */}
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center" id="hero-section">
+          {/* Hero text */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-5 space-y-6"
+            id="hero-bio-block"
+          >
+            <div>
+              <span className="text-[10px] text-sky-400 font-extrabold tracking-[0.2em] uppercase block mb-1">
+                AI Engineer
+              </span>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-none mb-2">
+                Gabriel Berto
+              </h1>
+              <p className="text-base md:text-lg font-medium text-sky-400/95">
+                AI Engineer — Production LLM Systems
+              </p>
+            </div>
+
+            <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-xl">
+              I build AI-powered systems that go from prototype to production—where reliability, cost and observability matter.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-3" id="hero-action-buttons">
+              <a 
+                href="https://github.com/gabrielberto" 
+                target="_blank" 
+                rel="noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-lg text-xs font-semibold tracking-tight transition-all active:scale-95"
+              >
+                <Github className="w-4 h-4" />
+                GitHub
+              </a>
+
+              <a 
+                href="https://linkedin.com/in/gabriel-berto" 
+                target="_blank" 
+                rel="noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-lg text-xs font-semibold tracking-tight transition-all active:scale-95"
+              >
+                <Linkedin className="w-4 h-4 text-sky-500" />
+                LinkedIn
+              </a>
+
+              <button 
+                onClick={handleCopyEmail}
+                className="relative flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-lg text-xs font-semibold tracking-tight transition-all active:scale-95"
+              >
+                <Mail className="w-4 h-4 text-emerald-400" />
+                {copiedEmail ? (
+                  <span className="text-emerald-400 font-medium">Copied!</span>
+                ) : (
+                  <span>Email Me</span>
+                )}
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Hero visual terminal card representing core tracks */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-7 bg-[#080d1a] border border-[#152243]/70 rounded-xl overflow-hidden shadow-xl"
+            id="hero-skills-card"
+          >
+            {/* Terminal bar */}
+            <div className="bg-zinc-900/60 px-4 py-3 border-b border-zinc-900 flex items-center justify-between">
+              <div className="flex items-center gap-1.5" id="terminal-lights">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
+                <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
+              </div>
+              <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono text-[9px] font-semibold">
+                <span className="animate-pulse">●</span>
+                <span>building in public</span>
+              </div>
+            </div>
+
+            {/* Container content */}
+            <div className="p-5 grid grid-cols-1 sm:grid-cols-12 gap-5 items-center">
+              {/* Bullets lists */}
+              <div className="sm:col-span-7 space-y-3.5" id="hero-bullets">
+                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
+                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
+                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Production LLM Systems</span>
+                </div>
+                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
+                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
+                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">AI Agents & Automation</span>
+                </div>
+                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
+                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
+                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Backend Engineering</span>
+                </div>
+                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
+                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
+                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Fintech & Document AI</span>
+                </div>
+              </div>
+
+              {/* Constellation Canvas Preview nodes right inside hero */}
+              <div className="sm:col-span-5 h-[135px] relative" id="constellation-frame">
+                <Constellation />
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* FEATURED PROJECTS SECTION */}
+        <section className="space-y-6" id="projects-section">
+          {/* Section heading */}
+          <div className="flex items-center justify-between border-b border-zinc-900 pb-3" id="projects-header">
+            <h2 className="text-lg font-bold text-zinc-100 tracking-tight uppercase flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-sky-400" />
+              Featured Projects
+            </h2>
+            <button 
+              onClick={() => scrollToSection('other-section')}
+              className="group text-sky-400 hover:text-sky-300 transition-colors text-xs font-semibold flex items-center gap-1 active:scale-95"
+            >
+              View all projects 
+              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8" id="featured-projects-grid">
+            
+            {/* Card 1: Cronograph */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5 }}
+              className="bg-[#080d1a] border border-[#152243]/70 rounded-xl overflow-hidden hover:border-[#223568] hover:shadow-xl hover:shadow-blue-950/10 transition-all p-4 grid grid-cols-1 md:grid-cols-12 gap-5"
+              id="cronograph-project-card"
+            >
+              {/* Graphic Mockup side */}
+              <div className="md:col-span-5 h-[160px] md:h-auto min-h-[150px]" id="cron-mockup-wrapper">
+                <CronographMockup />
+              </div>
+
+              {/* Information text details */}
+              <div className="md:col-span-7 flex flex-col justify-between space-y-4" id="cron-details">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-zinc-100 font-bold text-base tracking-tight hover:text-sky-400 transition-colors cursor-pointer">
+                      Cronograph
+                    </h3>
+                    <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
+                      In Production
+                    </span>
+                  </div>
+                  
+                  <p className="text-zinc-400 text-xs leading-relaxed">
+                    AI-powered spend analytics for fintechs. Automatically categorizes transactions, detects anomalies and extracts insights from financial data in real-time.
+                  </p>
+                </div>
+
+                {/* Tags lists */}
+                <div className="flex flex-wrap gap-1.5" id="cron-tags">
+                  {['Python', 'FastAPI', 'PostgreSQL', 'LangChain', 'OpenAI', 'AWS'].map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[9px] font-medium font-mono"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Buttons row */}
+                <div className="flex items-center justify-between pt-1 flex-wrap gap-2" id="cron-actions">
+                  <div className="flex items-center gap-3">
+                    <span 
+                      className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors cursor-pointer"
+                    >
+                      Live App <ExternalLink className="w-2.5 h-2.5" />
+                    </span>
+                    <a 
+                      href="https://github.com/gabrielberto" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors"
+                    >
+                      GitHub <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                  </div>
+
+                  <button 
+                    onClick={() => triggerRequestAccess('Cronograph')}
+                    className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
+                    id="request-cron-access-btn"
+                  >
+                    <Mail className="w-3 h-3 text-sky-400" />
+                    Request Access
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 2: InvoiceReader */}
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-[#080d1a] border border-[#152243]/70 rounded-xl overflow-hidden hover:border-[#223568] hover:shadow-xl hover:shadow-cyan-950/10 transition-all p-4 grid grid-cols-1 md:grid-cols-12 gap-5"
+              id="invoicereader-project-card"
+            >
+              {/* Graphic OCR Document Mockup side */}
+              <div className="md:col-span-5 h-[160px] md:h-auto min-h-[150px]" id="invoice-mockup-wrapper">
+                <InvoiceReaderMockup />
+              </div>
+
+              {/* Information text details */}
+              <div className="md:col-span-7 flex flex-col justify-between space-y-4" id="invoice-details">
+                <div className="space-y-2">
+                  <h3 className="text-zinc-100 font-bold text-base tracking-tight hover:text-sky-400 transition-colors cursor-pointer">
+                    InvoiceReader
+                  </h3>
+                  
+                  <p className="text-zinc-400 text-xs leading-relaxed">
+                    Multi-LLM invoice extraction system with agentic workflow. Handles complex documents with high accuracy and human-in-the-loop review.
+                  </p>
+                </div>
+
+                {/* Tags lists */}
+                <div className="flex flex-wrap gap-1.5" id="invoice-tags">
+                  {['Python', 'LangGraph', 'OpenAI', 'Anthropic', 'FastAPI', 'S3'].map((tag) => (
+                    <span 
+                      key={tag} 
+                      className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[9px] font-medium font-mono"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Buttons row */}
+                <div className="flex items-center justify-between pt-1 flex-wrap gap-2" id="invoice-actions">
+                  <div className="flex items-center gap-3">
+                    <span 
+                      className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors cursor-pointer"
+                    >
+                      Live Demo <ExternalLink className="w-2.5 h-2.5" />
+                    </span>
+                    <a 
+                      href="https://github.com/gabrielberto" 
+                      target="_blank" 
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors"
+                    >
+                      GitHub <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                  </div>
+
+                  <button 
+                    onClick={() => triggerRequestAccess('InvoiceReader')}
+                    className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
+                    id="request-invoice-access-btn"
+                  >
+                    <Mail className="w-3 h-3 text-sky-400" />
+                    Request Access
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
+        </section>
+
+        {/* ABOUT ME SECTION */}
+        <section className="space-y-6" id="about-section">
+          <div className="border-b border-zinc-900 pb-3" id="about-header">
+            <h2 className="text-lg font-bold text-zinc-100 tracking-tight uppercase flex items-center gap-2">
+              <span className="text-emerald-500 font-mono">1.</span>
+              About Me
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            {/* Extended text description */}
+            <div className="md:col-span-8 space-y-4 text-zinc-400 text-sm leading-relaxed" id="about-left-col">
+              <p>
+                I&apos;m an AI Engineer focused on building production-ready LLM systems that solve real business problems. My work sits at the intersection of AI, backend engineering and product — turning prototypes into reliable, observable and scalable applications.
+              </p>
+              <p>
+                I enjoy the full cycle: from understanding the problem deeply, designing the architecture, and building robust systems to ship value fast. I care about code quality, tests, monitoring and making systems that hold up in production.
+              </p>
+              <p className="font-semibold text-zinc-300 text-xs p-3 bg-zinc-950/40 border border-zinc-900 rounded-lg inline-block">
+                🚀 Currently open to opportunities where I can build AI systems that create impact.
+              </p>
+            </div>
+
+            {/* Quick list specs meta cards */}
+            <div className="md:col-span-4 bg-zinc-950/40 border border-zinc-900 p-5 rounded-xl space-y-4 font-sans text-xs" id="about-right-col">
+              <div className="flex items-center gap-3 py-1">
+                <div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800/80 flex items-center justify-center text-zinc-300">
+                  <Globe className="w-3.5 h-3.5 text-zinc-400" />
+                </div>
+                <div>
+                  <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Location</span>
+                  <span className="text-zinc-200 font-semibold">Based in Brazil</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 py-1">
+                <div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800/80 flex items-center justify-center text-zinc-300">
+                  <Briefcase className="w-3.5 h-3.5 text-sky-400" />
+                </div>
+                <div>
+                  <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Specialization</span>
+                  <span className="text-zinc-200 font-semibold">Focus: AI Engineering</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 py-1">
+                <div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800/80 flex items-center justify-center text-zinc-300">
+                  <GraduationCap className="w-3.5 h-3.5 text-amber-500" />
+                </div>
+                <div>
+                  <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Education</span>
+                  <span className="text-zinc-200 font-semibold">B.Sc. in Computer Science</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3 py-1">
+                <div className="w-7 h-7 rounded-lg bg-zinc-900 border border-zinc-800/80 flex items-center justify-center text-zinc-300">
+                  <Mail className="w-3.5 h-3.5 text-emerald-400" />
+                </div>
+                <div className="truncate">
+                  <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Direct Channel</span>
+                  <span className="text-zinc-200 font-semibold font-mono select-all hover:text-emerald-400 cursor-pointer" onClick={handleCopyEmail}>
+                    gabrielberto.dev@gmail.com
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TECH STACK SECTION */}
+        <section className="space-y-6" id="tech-section">
+          <div className="border-b border-zinc-900 pb-3" id="tech-header">
+            <h2 className="text-lg font-bold text-zinc-100 tracking-tight uppercase flex items-center gap-2">
+              <span className="text-sky-400 font-mono">2.</span>
+              Tech Stack
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" id="tech-categories-grid">
+            
+            {/* Languages */}
+            <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
+              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+                <Code className="w-4 h-4 text-emerald-400" />
+                <span className="font-bold text-xs tracking-tight">Languages</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['Python', 'SQL'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Backend */}
+            <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
+              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+                <Database className="w-4 h-4 text-amber-500" />
+                <span className="font-bold text-xs tracking-tight">Backend</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Pydantic'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* AI / LLM */}
+            <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
+              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+                <Cpu className="w-4 h-4 text-pink-500" />
+                <span className="font-bold text-xs tracking-tight">AI / LLM</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['LangChain', 'LangGraph', 'OpenAI', 'Anthropic'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Frontend */}
+            <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
+              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+                <Tv className="w-4 h-4 text-sky-400" />
+                <span className="font-bold text-xs tracking-tight">Frontend</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['Next.js', 'TypeScript', 'Tailwind CSS'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Infra & DevOps */}
+            <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
+              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+                <Cloud className="w-4 h-4 text-blue-500" />
+                <span className="font-bold text-xs tracking-tight">Infra & DevOps</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['AWS', 'Docker', 'GitHub Actions', 'S3'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        {/* OTHER PROJECTS LISTING SECTION */}
+        <section className="space-y-6" id="other-section">
+          <div className="border-b border-zinc-900 pb-3" id="other-header">
+            <h2 className="text-lg font-bold text-zinc-100 tracking-tight uppercase flex items-center gap-2">
+              Other Projects
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="other-projects-grid">
+            
+            {/* Card 1: MarketPulse */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
+            >
+              <div className="space-y-3">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">MarketPulse</h4>
+                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
+                    Real-time market data aggregator and analytics dashboard.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
+                <div className="text-zinc-500 font-mono text-[8px] leading-none">
+                  FastAPI • PostgreSQL • Redis
+                </div>
+                <a 
+                  href="https://github.com/gabrielberto"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 2: ChatDocs */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.05 }}
+              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
+            >
+              <div className="space-y-3">
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                  <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">ChatDocs</h4>
+                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
+                    RAG-based chatbot for company documents with citations.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
+                <div className="text-zinc-500 font-mono text-[8px] leading-none">
+                  LangChain • OpenAI • FAISS
+                </div>
+                <a 
+                  href="https://github.com/gabrielberto"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 3: ScrapeAgent */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
+            >
+              <div className="space-y-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+                  <Bot className="w-3.5 h-3.5 text-amber-500" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">ScrapeAgent</h4>
+                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
+                    AI agent that scrapes websites intelligently with structured output.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
+                <div className="text-zinc-500 font-mono text-[8px] leading-none">
+                  Python • Playwright • OpenAI
+                </div>
+                <a 
+                  href="https://github.com/gabrielberto"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 4: EmailClassifier */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.15 }}
+              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
+            >
+              <div className="space-y-3">
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                  <MailPlus className="w-3.5 h-3.5 text-blue-400" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">EmailClassifier</h4>
+                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
+                    Classifies and routes emails using LLM and custom rules.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
+                <div className="text-zinc-500 font-mono text-[8px] leading-none">
+                  FastAPI • OpenAI • PostgreSQL
+                </div>
+                <a 
+                  href="https://github.com/gabrielberto"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 5: BudgetTracker */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
+            >
+              <div className="space-y-3">
+                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                  <Coins className="w-3.5 h-3.5 text-emerald-400" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">BudgetTracker</h4>
+                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
+                    Personal finance tracker with insights and visualizations.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
+                <div className="text-zinc-500 font-mono text-[8px] leading-none">
+                  Next.js • TypeScript • Supabase
+                </div>
+                <a 
+                  href="https://github.com/gabrielberto"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 6: LLMEval */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.25 }}
+              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
+            >
+              <div className="space-y-3">
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                  <Zap className="w-3.5 h-3.5 text-indigo-400" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">LLMEval</h4>
+                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
+                    Evaluate LLM outputs with custom metrics and datasets.
+                  </p>
+                </div>
+              </div>
+              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
+                <div className="text-zinc-500 font-mono text-[8px] leading-none">
+                  Python • Pandas • Streamlit
+                </div>
+                <a 
+                  href="https://github.com/gabrielberto"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+            </motion.div>
+
+          </div>
+        </section>
+
+        {/* BOTTOM GENERAL CONTACT INVITATION BANNER */}
+        <section className="bg-zinc-950/60 border border-zinc-900 rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden" id="footer-section">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="flex items-start gap-4" id="banner-text-block">
+            <div className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-sky-400 flex-shrink-0">
+              <Mail className="w-5 h-5" />
+            </div>
+            
+            <div className="space-y-1">
+              <h3 className="font-bold text-zinc-100 text-sm md:text-base tracking-tight leading-none">
+                Let&apos;s build something impactful.
+              </h3>
+              <p className="text-zinc-400 text-xs leading-relaxed max-w-md">
+                I&apos;m open to opportunities in AI Engineering and love working on meaningful problems that drive reliable production software.
+              </p>
+            </div>
+          </div>
+
+          {/* Social CTAs on right side */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full md:w-auto" id="banner-action-buttons">
+            <button 
+              onClick={handleCopyEmail}
+              className="flex items-center justify-center gap-2 px-4 py-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800/80 rounded-lg text-xs font-semibold tracking-tight transition-all active:scale-95"
+            >
+              {copiedEmail ? (
+                <>
+                  <Check className="w-4 h-4 text-emerald-400" />
+                  <span className="text-emerald-400 font-medium font-mono">Copied Email Address</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="font-mono">gabrielberto.dev@gmail.com</span>
+                </>
+              )}
+            </button>
+
+            <a 
+              href="https://linkedin.com/in/gabriel-berto" 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-900/10 hover:bg-blue-900/20 text-sky-400 border border-blue-900/30 hover:border-blue-900/50 rounded-lg text-xs font-semibold tracking-tight transition-colors"
+            >
+              <Linkedin className="w-3.5 h-3.5" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a 
+              href="https://github.com/gabrielberto" 
+              target="_blank" 
+              rel="noreferrer"
+              className="flex items-center justify-center gap-1.5 px-4 py-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 rounded-lg text-xs font-semibold tracking-tight transition-colors"
+            >
+              <Github className="w-3.5 h-3.5" />
+              <span>GitHub</span>
+            </a>
+          </div>
+        </section>
+
+      </main>
+
+      {/* LOWER FOOTER DETAILS */}
+      <footer className="max-w-6xl mx-auto px-6 pb-12 border-t border-zinc-950 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-zinc-600 font-sans gap-3" id="main-footer">
+        <div>
+          <span>© 2024 Gabriel Berto. All rights reserved.</span>
+        </div>
+        <div>
+          <span>Built with Next.js & Tailwind CSS</span>
+        </div>
+      </footer>
+
+      {/* PRIVATE ACCESS REQUEST PORTAL MODAL DIALOG */}
+      <RequestAccessModal 
+        isOpen={modalOpen} 
+        onClose={() => setModalOpen(false)} 
+        projectName={selectedProject} 
+      />
+    </div>
+  );
+}
