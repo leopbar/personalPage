@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   Github,
   Linkedin,
@@ -33,13 +33,8 @@ import {
 import Constellation from '../components/Constellation';
 import CronographMockup from '../components/CronographMockup';
 import InvoiceReaderMockup from '../components/InvoiceReaderMockup';
-import RequestAccessModal from '../components/RequestAccessModal';
 
 export default function PortfolioPage() {
-  // Modal states for Request Access
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState('');
-  
   // Header active navigation states
   const [activeSection, setActiveSection] = useState('projects');
 
@@ -47,14 +42,9 @@ export default function PortfolioPage() {
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('gabrielberto.dev@gmail.com');
+    navigator.clipboard.writeText('lbarretti@gmail.com');
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
-  };
-
-  const triggerRequestAccess = (projectName: string) => {
-    setSelectedProject(projectName);
-    setModalOpen(true);
   };
 
   // Helper for scroll tracking to light up navbar correctly
@@ -103,7 +93,7 @@ export default function PortfolioPage() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <span className="font-extrabold tracking-tight text-white hover:text-sky-400 transition-colors text-base">
-              Gabriel Berto
+              Leonardo Barretti
             </span>
           </motion.div>
 
@@ -164,23 +154,23 @@ export default function PortfolioPage() {
           >
             <div>
               <span className="text-[10px] text-sky-400 font-extrabold tracking-[0.2em] uppercase block mb-1">
-                AI Engineer
+                AI / LLM Engineer
               </span>
               <h1 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight leading-none mb-2">
-                Gabriel Berto
+                Leonardo Barretti
               </h1>
               <p className="text-base md:text-lg font-medium text-sky-400/95">
-                AI Engineer — Production LLM Systems
+                AI / LLM Engineer — Production LLM Systems
               </p>
             </div>
 
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-xl">
-              I build AI-powered systems that go from prototype to production—where reliability, cost and observability matter.
+              I design and ship production-grade AI systems — multi-agent pipelines, RAG, and self-correcting workflows with real observability and cost control. 15+ years bridging business and technical execution in finance and trading.
             </p>
 
             <div className="flex flex-wrap items-center gap-3" id="hero-action-buttons">
               <a 
-                href="https://github.com/gabrielberto" 
+                href="https://github.com/leopbar" 
                 target="_blank" 
                 rel="noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-lg text-xs font-semibold tracking-tight transition-all active:scale-95"
@@ -190,7 +180,7 @@ export default function PortfolioPage() {
               </a>
 
               <a 
-                href="https://linkedin.com/in/gabriel-berto" 
+                href="https://www.linkedin.com/in/leonardo-barretti" 
                 target="_blank" 
                 rel="noreferrer"
                 className="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-800 text-zinc-300 hover:text-white rounded-lg text-xs font-semibold tracking-tight transition-all active:scale-95"
@@ -240,19 +230,19 @@ export default function PortfolioPage() {
               <div className="sm:col-span-7 space-y-3.5" id="hero-bullets">
                 <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
                   <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
+                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Multi-Agent Systems</span>
+                </div>
+                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
+                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
+                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">RAG & Vector Search</span>
+                </div>
+                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
+                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
                   <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Production LLM Systems</span>
                 </div>
                 <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
                   <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
-                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">AI Agents & Automation</span>
-                </div>
-                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
-                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
-                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Backend Engineering</span>
-                </div>
-                <div className="flex items-center gap-2 text-zinc-300 group hover:translate-x-1 transition-transform">
-                  <span className="text-emerald-500 font-mono font-bold">{`>`}</span>
-                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Fintech & Document AI</span>
+                  <span className="text-xs font-semibold font-mono tracking-tight text-zinc-200">Finance & Trading Tech</span>
                 </div>
               </div>
 
@@ -310,16 +300,16 @@ export default function PortfolioPage() {
                   </div>
                   
                   <p className="text-zinc-400 text-xs leading-relaxed">
-                    AI-powered spend analytics for fintechs. Automatically categorizes transactions, detects anomalies and extracts insights from financial data in real-time.
+                    Production platform that extracts high-resolution market data from Binance and runs statistical window analysis to support weekly Bitcoin options strike selection. Sub-50ms aggregation over hundreds of thousands of OHLCV candles.
                   </p>
                 </div>
 
                 {/* Tags lists */}
                 <div className="flex flex-wrap gap-1.5" id="cron-tags">
-                  {['Python', 'FastAPI', 'PostgreSQL', 'LangChain', 'OpenAI', 'AWS'].map((tag) => (
-                    <span 
-                      key={tag} 
-                      className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[9px] font-medium font-mono"
+                  {['Python', 'FastAPI', 'Polars', 'PostgreSQL', 'TimescaleDB', 'Docker'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[11px] font-medium font-mono"
                     >
                       {tag}
                     </span>
@@ -329,14 +319,17 @@ export default function PortfolioPage() {
                 {/* Buttons row */}
                 <div className="flex items-center justify-between pt-1 flex-wrap gap-2" id="cron-actions">
                   <div className="flex items-center gap-3">
-                    <span 
-                      className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors cursor-pointer"
+                    <a
+                      href="https://cronograph.lbai.dev"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
                     >
                       Live App <ExternalLink className="w-2.5 h-2.5" />
-                    </span>
-                    <a 
-                      href="https://github.com/gabrielberto" 
-                      target="_blank" 
+                    </a>
+                    <a
+                      href="https://github.com/leopbar"
+                      target="_blank"
                       rel="noreferrer"
                       className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors"
                     >
@@ -344,14 +337,14 @@ export default function PortfolioPage() {
                     </a>
                   </div>
 
-                  <button 
-                    onClick={() => triggerRequestAccess('Cronograph')}
+                  <a
+                    href="mailto:lbarretti@gmail.com?subject=Cronograph%20-%20Access%20Request"
                     className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
                     id="request-cron-access-btn"
                   >
                     <Mail className="w-3 h-3 text-sky-400" />
                     Request Access
-                  </button>
+                  </a>
                 </div>
               </div>
             </motion.div>
@@ -373,21 +366,26 @@ export default function PortfolioPage() {
               {/* Information text details */}
               <div className="md:col-span-7 flex flex-col justify-between space-y-4" id="invoice-details">
                 <div className="space-y-2">
-                  <h3 className="text-zinc-100 font-bold text-base tracking-tight hover:text-sky-400 transition-colors cursor-pointer">
-                    InvoiceReader
-                  </h3>
-                  
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-zinc-100 font-bold text-base tracking-tight hover:text-sky-400 transition-colors cursor-pointer">
+                      InvoiceReader
+                    </h3>
+                    <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
+                      In Production
+                    </span>
+                  </div>
+
                   <p className="text-zinc-400 text-xs leading-relaxed">
-                    Multi-LLM invoice extraction system with agentic workflow. Handles complex documents with high accuracy and human-in-the-loop review.
+                    Stateful extraction pipeline in LangGraph that validates every LLM output against a strict Pydantic schema. Multi-LLM fallback with cost-aware model routing, field-level retries, and real-time SSE progress.
                   </p>
                 </div>
 
                 {/* Tags lists */}
                 <div className="flex flex-wrap gap-1.5" id="invoice-tags">
-                  {['Python', 'LangGraph', 'OpenAI', 'Anthropic', 'FastAPI', 'S3'].map((tag) => (
-                    <span 
-                      key={tag} 
-                      className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[9px] font-medium font-mono"
+                  {['Python', 'LangGraph', 'Pydantic', 'Gemini', 'OpenAI', 'Supabase'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[11px] font-medium font-mono"
                     >
                       {tag}
                     </span>
@@ -397,14 +395,17 @@ export default function PortfolioPage() {
                 {/* Buttons row */}
                 <div className="flex items-center justify-between pt-1 flex-wrap gap-2" id="invoice-actions">
                   <div className="flex items-center gap-3">
-                    <span 
-                      className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors cursor-pointer"
+                    <a
+                      href="https://invoice.lbai.dev"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
                     >
-                      Live Demo <ExternalLink className="w-2.5 h-2.5" />
-                    </span>
-                    <a 
-                      href="https://github.com/gabrielberto" 
-                      target="_blank" 
+                      Live App <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                    <a
+                      href="https://github.com/leopbar"
+                      target="_blank"
                       rel="noreferrer"
                       className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors"
                     >
@@ -412,15 +413,143 @@ export default function PortfolioPage() {
                     </a>
                   </div>
 
-                  <button 
-                    onClick={() => triggerRequestAccess('InvoiceReader')}
+                  <a
+                    href="mailto:lbarretti@gmail.com?subject=InvoiceReader%20-%20Access%20Request"
                     className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
                     id="request-invoice-access-btn"
                   >
                     <Mail className="w-3 h-3 text-sky-400" />
                     Request Access
-                  </button>
+                  </a>
                 </div>
+              </div>
+            </motion.div>
+
+            {/* Card 3: AuditChain */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-[#080d1a] border border-[#152243]/70 rounded-xl overflow-hidden hover:border-[#223568] hover:shadow-xl hover:shadow-purple-950/10 transition-all p-4 flex flex-col justify-between space-y-4"
+              id="auditchain-project-card"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className="text-zinc-100 font-bold text-base tracking-tight hover:text-sky-400 transition-colors cursor-pointer">
+                    AuditChain
+                  </h3>
+                  <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
+                    In Production
+                  </span>
+                </div>
+                <p className="text-zinc-400 text-xs leading-relaxed">
+                  5-agent forensic analysis system for SEC filings, orchestrated with LangGraph. Achieved 100% recall on known-fraud evaluation set using quantitative models (Beneish M-Score, Altman Z-Score) and RAG-based qualitative analysis.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5">
+                {['Python', 'LangGraph', 'PostgreSQL', 'pgvector', 'OpenAI', 'Docker'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[11px] font-medium font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-between pt-1 flex-wrap gap-2">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://audit.lbai.dev"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
+                  >
+                    Live App <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                  <a
+                    href="https://github.com/leopbar"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors"
+                  >
+                    GitHub <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                </div>
+
+                <a
+                  href="mailto:lbarretti@gmail.com?subject=AuditChain%20-%20Access%20Request"
+                  className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
+                >
+                  <Mail className="w-3 h-3 text-sky-400" />
+                  Request Access
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Card 4: bitPredict */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-[#080d1a] border border-[#152243]/70 rounded-xl overflow-hidden hover:border-[#223568] hover:shadow-xl hover:shadow-amber-950/10 transition-all p-4 flex flex-col justify-between space-y-4"
+              id="bitpredict-project-card"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <h3 className="text-zinc-100 font-bold text-base tracking-tight hover:text-sky-400 transition-colors cursor-pointer">
+                    bitPredict
+                  </h3>
+                  <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
+                    In Production
+                  </span>
+                </div>
+                <p className="text-zinc-400 text-xs leading-relaxed">
+                  Multi-timeframe Bitcoin forecasting powered by Kronos, a 102M-parameter foundation model (HuggingFace). 30 stochastic simulations per candle with calibrated uncertainty bands and a portfolio backtest engine reporting Sharpe, drawdown, and win rate.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5">
+                {['Python', 'PyTorch', 'FastAPI', 'Celery', 'TimescaleDB', 'Docker'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[11px] font-medium font-mono"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-between pt-1 flex-wrap gap-2">
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://bitpredict.lbai.dev"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
+                  >
+                    Live App <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                  <a
+                    href="https://github.com/leopbar"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors"
+                  >
+                    GitHub <ExternalLink className="w-2.5 h-2.5" />
+                  </a>
+                </div>
+
+                <a
+                  href="mailto:lbarretti@gmail.com?subject=bitPredict%20-%20Access%20Request"
+                  className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
+                >
+                  <Mail className="w-3 h-3 text-sky-400" />
+                  Request Access
+                </a>
               </div>
             </motion.div>
 
@@ -440,13 +569,13 @@ export default function PortfolioPage() {
             {/* Extended text description */}
             <div className="md:col-span-8 space-y-4 text-zinc-400 text-sm leading-relaxed" id="about-left-col">
               <p>
-                I&apos;m an AI Engineer focused on building production-ready LLM systems that solve real business problems. My work sits at the intersection of AI, backend engineering and product — turning prototypes into reliable, observable and scalable applications.
+                I&apos;m an AI/LLM Engineer who designs and ships production-grade systems built around large language models — multi-agent pipelines, RAG, and self-correcting workflows with real observability and cost control. I pair deep domain understanding with hands-on engineering to take systems from prototype to production, where reliability, cost, and correctness matter.
               </p>
               <p>
-                I enjoy the full cycle: from understanding the problem deeply, designing the architecture, and building robust systems to ship value fast. I care about code quality, tests, monitoring and making systems that hold up in production.
+                Backed by 15+ years bridging business and technical execution in finance and trading, I bring a unique blend of stakeholder communication, system design, and pragmatic engineering. I care about code quality, testing (pytest), monitoring, and making systems that hold up under real load.
               </p>
               <p className="font-semibold text-zinc-300 text-xs p-3 bg-zinc-950/40 border border-zinc-900 rounded-lg inline-block">
-                🚀 Currently open to opportunities where I can build AI systems that create impact.
+                Open to opportunities in AI Engineering — available to relocation.
               </p>
             </div>
 
@@ -458,7 +587,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Location</span>
-                  <span className="text-zinc-200 font-semibold">Based in Brazil</span>
+                  <span className="text-zinc-200 font-semibold">Brazil · Relocation OK</span>
                 </div>
               </div>
 
@@ -468,7 +597,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Specialization</span>
-                  <span className="text-zinc-200 font-semibold">Focus: AI Engineering</span>
+                  <span className="text-zinc-200 font-semibold">AI / LLM Engineering</span>
                 </div>
               </div>
 
@@ -478,7 +607,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Education</span>
-                  <span className="text-zinc-200 font-semibold">B.Sc. in Computer Science</span>
+                  <span className="text-zinc-200 font-semibold">MBA Project Mgmt (FGV) + B.Sc. IT</span>
                 </div>
               </div>
 
@@ -489,7 +618,7 @@ export default function PortfolioPage() {
                 <div className="truncate">
                   <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Direct Channel</span>
                   <span className="text-zinc-200 font-semibold font-mono select-all hover:text-emerald-400 cursor-pointer" onClick={handleCopyEmail}>
-                    gabrielberto.dev@gmail.com
+                    lbarretti@gmail.com
                   </span>
                 </div>
               </div>
@@ -506,17 +635,17 @@ export default function PortfolioPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" id="tech-categories-grid">
-            
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="tech-categories-grid">
+
             {/* Languages */}
             <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
               <div className="flex items-center gap-2 mb-3 text-zinc-300">
                 <Code className="w-4 h-4 text-emerald-400" />
-                <span className="font-bold text-xs tracking-tight">Languages</span>
+                <span className="font-bold text-xs tracking-tight">Languages & APIs</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {['Python', 'SQL'].map((item) => (
-                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                {['Python', 'SQL', 'TypeScript', 'REST APIs', 'SSE', 'async/await'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[11px] font-mono leading-none">
                     {item}
                   </span>
                 ))}
@@ -527,11 +656,11 @@ export default function PortfolioPage() {
             <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
               <div className="flex items-center gap-2 mb-3 text-zinc-300">
                 <Database className="w-4 h-4 text-amber-500" />
-                <span className="font-bold text-xs tracking-tight">Backend</span>
+                <span className="font-bold text-xs tracking-tight">Backend & Data</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {['FastAPI', 'PostgreSQL', 'SQLAlchemy', 'Pydantic'].map((item) => (
-                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                {['FastAPI', 'PostgreSQL', 'TimescaleDB', 'Celery', 'Redis', 'Pydantic'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[11px] font-mono leading-none">
                     {item}
                   </span>
                 ))}
@@ -545,38 +674,53 @@ export default function PortfolioPage() {
                 <span className="font-bold text-xs tracking-tight">AI / LLM</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {['LangChain', 'LangGraph', 'OpenAI', 'Anthropic'].map((item) => (
-                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                {['LangGraph', 'LangChain', 'RAG', 'Multi-Agent', 'OpenAI', 'Anthropic'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[11px] font-mono leading-none">
                     {item}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Frontend */}
+            {/* Machine Learning */}
             <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
               <div className="flex items-center gap-2 mb-3 text-zinc-300">
-                <Tv className="w-4 h-4 text-sky-400" />
-                <span className="font-bold text-xs tracking-tight">Frontend</span>
+                <Layers className="w-4 h-4 text-purple-400" />
+                <span className="font-bold text-xs tracking-tight">Machine Learning</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {['Next.js', 'TypeScript', 'Tailwind CSS'].map((item) => (
-                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                {['PyTorch', 'HuggingFace', 'pgvector', 'LLM Eval', 'NLP', 'Prompt Eng.'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[11px] font-mono leading-none">
                     {item}
                   </span>
                 ))}
               </div>
             </div>
 
-            {/* Infra & DevOps */}
+            {/* Cloud & Infra */}
             <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
               <div className="flex items-center gap-2 mb-3 text-zinc-300">
                 <Cloud className="w-4 h-4 text-blue-500" />
-                <span className="font-bold text-xs tracking-tight">Infra & DevOps</span>
+                <span className="font-bold text-xs tracking-tight">Cloud & Infra</span>
               </div>
               <div className="flex flex-wrap gap-1.5">
-                {['AWS', 'Docker', 'GitHub Actions', 'S3'].map((item) => (
-                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[10px] font-mono leading-none">
+                {['GCP Vertex AI', 'Docker', 'CI/CD', 'Nginx', 'VPS', 'GitHub Actions'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[11px] font-mono leading-none">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Practices */}
+            <div className="bg-zinc-950/40 border border-zinc-900/80 p-4 rounded-xl flex flex-col justify-between hover:border-zinc-800 transition-colors">
+              <div className="flex items-center gap-2 mb-3 text-zinc-300">
+                <Sparkles className="w-4 h-4 text-sky-400" />
+                <span className="font-bold text-xs tracking-tight">Practices</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {['System Design', 'pytest', 'Observability', 'Cost Opt.', 'Agile', 'Documentation'].map((item) => (
+                  <span key={item} className="px-2 py-0.5 bg-zinc-900 border border-zinc-800/50 text-zinc-300 rounded text-[11px] font-mono leading-none">
                     {item}
                   </span>
                 ))}
@@ -594,10 +738,10 @@ export default function PortfolioPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" id="other-projects-grid">
-            
-            {/* Card 1: MarketPulse */}
-            <motion.div 
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4" id="other-projects-grid">
+
+            {/* Card 1: RAG Systems */}
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -605,33 +749,25 @@ export default function PortfolioPage() {
               className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                  <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">MarketPulse</h4>
-                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
-                    Real-time market data aggregator and analytics dashboard.
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">RAG Systems</h4>
+                  <p className="text-zinc-400 text-[11px] leading-relaxed mt-1">
+                    Retrieval-augmented generation pipelines with pgvector, citations, and streaming responses.
                   </p>
                 </div>
               </div>
               <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
-                <div className="text-zinc-500 font-mono text-[8px] leading-none">
-                  FastAPI • PostgreSQL • Redis
+                <div className="text-zinc-500 font-mono text-[11px] leading-none">
+                  LangChain • pgvector • OpenAI
                 </div>
-                <a 
-                  href="https://github.com/gabrielberto"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
-                >
-                  GitHub ↗
-                </a>
               </div>
             </motion.div>
 
-            {/* Card 2: ChatDocs */}
-            <motion.div 
+            {/* Card 2: Doc Processing */}
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -639,33 +775,25 @@ export default function PortfolioPage() {
               className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
             >
               <div className="space-y-3">
-                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-                  <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
+                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                  <MailPlus className="w-3.5 h-3.5 text-blue-400" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">ChatDocs</h4>
-                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
-                    RAG-based chatbot for company documents with citations.
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">Doc Pipelines</h4>
+                  <p className="text-zinc-400 text-[11px] leading-relaxed mt-1">
+                    Document-processing pipelines with LLM extraction, classification, and structured output.
                   </p>
                 </div>
               </div>
               <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
-                <div className="text-zinc-500 font-mono text-[8px] leading-none">
-                  LangChain • OpenAI • FAISS
+                <div className="text-zinc-500 font-mono text-[11px] leading-none">
+                  FastAPI • Pydantic • Gemini
                 </div>
-                <a 
-                  href="https://github.com/gabrielberto"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
-                >
-                  GitHub ↗
-                </a>
               </div>
             </motion.div>
 
-            {/* Card 3: ScrapeAgent */}
-            <motion.div 
+            {/* Card 3: Workflow Automation */}
+            <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -677,126 +805,16 @@ export default function PortfolioPage() {
                   <Bot className="w-3.5 h-3.5 text-amber-500" />
                 </div>
                 <div>
-                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">ScrapeAgent</h4>
-                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
-                    AI agent that scrapes websites intelligently with structured output.
+                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">Workflow Automation</h4>
+                  <p className="text-zinc-400 text-[11px] leading-relaxed mt-1">
+                    AI-driven workflow automation for international clients — requirements to deployed products.
                   </p>
                 </div>
               </div>
               <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
-                <div className="text-zinc-500 font-mono text-[8px] leading-none">
-                  Python • Playwright • OpenAI
+                <div className="text-zinc-500 font-mono text-[11px] leading-none">
+                  Python • LangGraph • Docker
                 </div>
-                <a 
-                  href="https://github.com/gabrielberto"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
-                >
-                  GitHub ↗
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Card 4: EmailClassifier */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.15 }}
-              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
-            >
-              <div className="space-y-3">
-                <div className="w-8 h-8 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
-                  <MailPlus className="w-3.5 h-3.5 text-blue-400" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">EmailClassifier</h4>
-                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
-                    Classifies and routes emails using LLM and custom rules.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
-                <div className="text-zinc-500 font-mono text-[8px] leading-none">
-                  FastAPI • OpenAI • PostgreSQL
-                </div>
-                <a 
-                  href="https://github.com/gabrielberto"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
-                >
-                  GitHub ↗
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Card 5: BudgetTracker */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
-            >
-              <div className="space-y-3">
-                <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
-                  <Coins className="w-3.5 h-3.5 text-emerald-400" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">BudgetTracker</h4>
-                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
-                    Personal finance tracker with insights and visualizations.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
-                <div className="text-zinc-500 font-mono text-[8px] leading-none">
-                  Next.js • TypeScript • Supabase
-                </div>
-                <a 
-                  href="https://github.com/gabrielberto"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
-                >
-                  GitHub ↗
-                </a>
-              </div>
-            </motion.div>
-
-            {/* Card 6: LLMEval */}
-            <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.25 }}
-              className="bg-zinc-950/30 border border-zinc-900/60 hover:border-zinc-800 rounded-xl p-4 flex flex-col justify-between hover:shadow-lg transition-all"
-            >
-              <div className="space-y-3">
-                <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-                  <Zap className="w-3.5 h-3.5 text-indigo-400" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-zinc-100 text-[11px] tracking-tight">LLMEval</h4>
-                  <p className="text-zinc-400 text-[9.5px] leading-relaxed mt-1">
-                    Evaluate LLM outputs with custom metrics and datasets.
-                  </p>
-                </div>
-              </div>
-              <div className="mt-3 pt-2.5 border-t border-zinc-900/60 space-y-1.5">
-                <div className="text-zinc-500 font-mono text-[8px] leading-none">
-                  Python • Pandas • Streamlit
-                </div>
-                <a 
-                  href="https://github.com/gabrielberto"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-0.5 text-zinc-400 hover:text-white transition-colors text-[9px] font-semibold"
-                >
-                  GitHub ↗
-                </a>
               </div>
             </motion.div>
 
@@ -817,7 +835,7 @@ export default function PortfolioPage() {
                 Let&apos;s build something impactful.
               </h3>
               <p className="text-zinc-400 text-xs leading-relaxed max-w-md">
-                I&apos;m open to opportunities in AI Engineering and love working on meaningful problems that drive reliable production software.
+                I&apos;m open to AI Engineering opportunities and love working on meaningful problems — multi-agent systems, RAG, and production LLM pipelines.
               </p>
             </div>
           </div>
@@ -836,13 +854,13 @@ export default function PortfolioPage() {
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5 text-emerald-400" />
-                  <span className="font-mono">gabrielberto.dev@gmail.com</span>
+                  <span className="font-mono">lbarretti@gmail.com</span>
                 </>
               )}
             </button>
 
             <a 
-              href="https://linkedin.com/in/gabriel-berto" 
+              href="https://www.linkedin.com/in/leonardo-barretti" 
               target="_blank" 
               rel="noreferrer"
               className="flex items-center justify-center gap-1.5 px-4 py-2 bg-blue-900/10 hover:bg-blue-900/20 text-sky-400 border border-blue-900/30 hover:border-blue-900/50 rounded-lg text-xs font-semibold tracking-tight transition-colors"
@@ -852,7 +870,7 @@ export default function PortfolioPage() {
             </a>
 
             <a 
-              href="https://github.com/gabrielberto" 
+              href="https://github.com/leopbar" 
               target="_blank" 
               rel="noreferrer"
               className="flex items-center justify-center gap-1.5 px-4 py-2 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-800 rounded-lg text-xs font-semibold tracking-tight transition-colors"
@@ -868,19 +886,13 @@ export default function PortfolioPage() {
       {/* LOWER FOOTER DETAILS */}
       <footer className="max-w-6xl mx-auto px-6 pb-12 border-t border-zinc-950 pt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-zinc-600 font-sans gap-3" id="main-footer">
         <div>
-          <span>© 2024 Gabriel Berto. All rights reserved.</span>
+          <span>© 2026 Leonardo Barretti. All rights reserved.</span>
         </div>
         <div>
           <span>Built with Next.js & Tailwind CSS</span>
         </div>
       </footer>
 
-      {/* PRIVATE ACCESS REQUEST PORTAL MODAL DIALOG */}
-      <RequestAccessModal 
-        isOpen={modalOpen} 
-        onClose={() => setModalOpen(false)} 
-        projectName={selectedProject} 
-      />
     </div>
   );
 }

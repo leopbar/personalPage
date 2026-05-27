@@ -7,8 +7,8 @@ const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
 export const metadata: Metadata = {
-  title: 'Gabriel Berto | AI Engineer — Production LLM Systems',
-  description: 'Portfólio e Currículo de Gabriel Berto, engenheiro de inteligência artificial focado em sistemas de LLM robustos, performáticos e observáveis.',
+  title: 'Leonardo Barretti | AI/LLM Engineer — Production LLM Systems',
+  description: 'Portfólio e Currículo de Leonardo Barretti, AI/LLM Engineer especializado em sistemas multi-agente, RAG e pipelines de LLM em produção.',
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
