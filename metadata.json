@@ -1,6 +1,6 @@
 {
-  "name": "Gabriel Berto - AI Engineer Portfolio",
-  "description": "Portfólio pessoal e currículo de Gabriel Berto, AI Engineer especializado em Sistemas de LLM de Produção.",
+  "name": "Leonardo Barretti - AI/LLM Engineer Portfolio",
+  "description": "Portfólio pessoal e currículo de Leonardo Barretti, AI/LLM Engineer especializado em sistemas multi-agente, RAG e pipelines de LLM em produção.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

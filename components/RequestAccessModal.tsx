@@ -89,7 +89,7 @@ export default function RequestAccessModal({ isOpen, onClose, projectName }: Req
                   </h3>
                   
                   <p className="text-zinc-400 text-xs mb-5 leading-relaxed">
-                    Gabriel Berto&apos;s products are currently in private beta for select fintech partners. Submit your request below to explore capabilities and secure sandboxed API credentials.
+                    Leonardo Barretti&apos;s products are currently in private beta. Submit your request below to explore capabilities and secure sandboxed API credentials.
                   </p>
 
                   <form onSubmit={handleSubmit} className="space-y-4">
@@ -153,7 +153,7 @@ export default function RequestAccessModal({ isOpen, onClose, projectName }: Req
                   
                   <p className="text-zinc-400 text-xs leading-relaxed max-w-sm mx-auto mb-6">
                     Thank you! We have logged your request for <span className="text-zinc-200 font-semibold">{projectName}</span>. 
-                    Gabriel will follow up at <span className="text-emerald-400 font-mono font-semibold">{email}</span> if a developer sandbox slot opens up!
+                    Leonardo will follow up at <span className="text-emerald-400 font-mono font-semibold">{email}</span> if a developer sandbox slot opens up!
                   </p>
 
                   <button
