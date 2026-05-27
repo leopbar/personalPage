@@ -763,6 +763,7 @@ export default function PortfolioPage() {
                 <div className="text-zinc-500 font-mono text-[11px] leading-none">
                   LangChain • pgvector • OpenAI
                 </div>
+                <span className="text-amber-500/70 text-[9px] font-medium italic">in development</span>
               </div>
             </motion.div>
 
@@ -789,6 +790,7 @@ export default function PortfolioPage() {
                 <div className="text-zinc-500 font-mono text-[11px] leading-none">
                   FastAPI • Pydantic • Gemini
                 </div>
+                <span className="text-amber-500/70 text-[9px] font-medium italic">in development</span>
               </div>
             </motion.div>
 
@@ -815,6 +817,7 @@ export default function PortfolioPage() {
                 <div className="text-zinc-500 font-mono text-[11px] leading-none">
                   Python • LangGraph • Docker
                 </div>
+                <span className="text-amber-500/70 text-[9px] font-medium italic">in development</span>
               </div>
             </motion.div>
 
