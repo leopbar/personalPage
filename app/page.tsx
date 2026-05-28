@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   Github,
   Linkedin,
   Mail,
   ExternalLink,
-  ChevronRight,
   Globe,
   Briefcase,
   GraduationCap,
@@ -26,7 +25,8 @@ import {
   MailPlus,
   Coins,
   Zap,
-  ArrowUpRight
+  ArrowUpRight,
+  X
 } from 'lucide-react';
 
 // Custom sub-components
@@ -37,6 +37,9 @@ import InvoiceReaderMockup from '../components/InvoiceReaderMockup';
 export default function PortfolioPage() {
   // Header active navigation states
   const [activeSection, setActiveSection] = useState('projects');
+
+  // Demo access info box state
+  const [demoAccessProject, setDemoAccessProject] = useState<string | null>(null);
 
   // Copy email notification state
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -165,7 +168,7 @@ export default function PortfolioPage() {
             </div>
 
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-xl">
-              I design and ship production-grade AI systems — multi-agent pipelines, RAG, and self-correcting workflows with real observability and cost control. 15+ years bridging business and technical execution in finance and trading.
+              I design and build production-grade AI systems — multi-agent pipelines, RAG, and self-correcting workflows with real observability and cost control. 20+ years as a Business Systems Analyst before transitioning into applied AI.
             </p>
 
             <div className="flex flex-wrap items-center gap-3" id="hero-action-buttons">
@@ -220,7 +223,7 @@ export default function PortfolioPage() {
               </div>
               <div className="flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 font-mono text-[9px] font-semibold">
                 <span className="animate-pulse">●</span>
-                <span>building in public</span>
+                <span>Online</span>
               </div>
             </div>
 
@@ -262,13 +265,6 @@ export default function PortfolioPage() {
               <Sparkles className="w-4 h-4 text-sky-400" />
               Featured Projects
             </h2>
-            <button 
-              onClick={() => scrollToSection('other-section')}
-              className="group text-sky-400 hover:text-sky-300 transition-colors text-xs font-semibold flex items-center gap-1 active:scale-95"
-            >
-              View all projects 
-              <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </button>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-8" id="featured-projects-grid">
@@ -295,7 +291,7 @@ export default function PortfolioPage() {
                       Cronograph
                     </h3>
                     <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
-                      In Production
+                      Self-Hosted Live
                     </span>
                   </div>
                   
@@ -337,14 +333,14 @@ export default function PortfolioPage() {
                     </a>
                   </div>
 
-                  <a
-                    href="mailto:lbarretti@gmail.com?subject=Cronograph%20-%20Access%20Request"
+                  <button
+                    onClick={() => setDemoAccessProject('Cronograph')}
                     className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
                     id="request-cron-access-btn"
                   >
                     <Mail className="w-3 h-3 text-sky-400" />
                     Request Access
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -371,7 +367,7 @@ export default function PortfolioPage() {
                       InvoiceReader
                     </h3>
                     <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
-                      In Production
+                      Self-Hosted Live
                     </span>
                   </div>
 
@@ -413,14 +409,14 @@ export default function PortfolioPage() {
                     </a>
                   </div>
 
-                  <a
-                    href="mailto:lbarretti@gmail.com?subject=InvoiceReader%20-%20Access%20Request"
+                  <button
+                    onClick={() => setDemoAccessProject('InvoiceReader')}
                     className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
                     id="request-invoice-access-btn"
                   >
                     <Mail className="w-3 h-3 text-sky-400" />
                     Request Access
-                  </a>
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -440,11 +436,11 @@ export default function PortfolioPage() {
                     AuditChain
                   </h3>
                   <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
-                    In Production
+                    Self-Hosted Live
                   </span>
                 </div>
                 <p className="text-zinc-400 text-xs leading-relaxed">
-                  5-agent forensic analysis system for SEC filings, orchestrated with LangGraph. Achieved 100% recall on known-fraud evaluation set using quantitative models (Beneish M-Score, Altman Z-Score) and RAG-based qualitative analysis.
+                  100% recall and 50% precision on a curated 7-case eval set (Bausch Health/Valeant, WorldCom, Luckin Coffee + 4 clean controls). Calibrated to prioritize fraud detection over false-positive minimization — the right tradeoff for forensic auditing.
                 </p>
               </div>
 
@@ -479,13 +475,13 @@ export default function PortfolioPage() {
                   </a>
                 </div>
 
-                <a
-                  href="mailto:lbarretti@gmail.com?subject=AuditChain%20-%20Access%20Request"
+                <button
+                  onClick={() => setDemoAccessProject('AuditChain')}
                   className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
                 >
                   <Mail className="w-3 h-3 text-sky-400" />
                   Request Access
-                </a>
+                </button>
               </div>
             </motion.div>
 
@@ -504,7 +500,7 @@ export default function PortfolioPage() {
                     bitPredict
                   </h3>
                   <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
-                    In Production
+                    Self-Hosted Live
                   </span>
                 </div>
                 <p className="text-zinc-400 text-xs leading-relaxed">
@@ -543,13 +539,13 @@ export default function PortfolioPage() {
                   </a>
                 </div>
 
-                <a
-                  href="mailto:lbarretti@gmail.com?subject=bitPredict%20-%20Access%20Request"
+                <button
+                  onClick={() => setDemoAccessProject('bitPredict')}
                   className="flex items-center gap-1.5 px-3 py-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-200 border border-zinc-800 rounded-md text-[10px] font-bold tracking-tight transition-colors active:scale-95"
                 >
                   <Mail className="w-3 h-3 text-sky-400" />
                   Request Access
-                </a>
+                </button>
               </div>
             </motion.div>
 
@@ -569,13 +565,16 @@ export default function PortfolioPage() {
             {/* Extended text description */}
             <div className="md:col-span-8 space-y-4 text-zinc-400 text-sm leading-relaxed" id="about-left-col">
               <p>
-                I&apos;m an AI/LLM Engineer who designs and ships production-grade systems built around large language models — multi-agent pipelines, RAG, and self-correcting workflows with real observability and cost control. I pair deep domain understanding with hands-on engineering to take systems from prototype to production, where reliability, cost, and correctness matter.
+                I&apos;m an AI Engineer with an unusual background: 20+ years as a Business Systems Analyst in Brazilian enterprises — XP Investimentos, Petrobras, Accenture — followed by a deliberate transition into applied AI.
               </p>
               <p>
-                Backed by 15+ years bridging business and technical execution in finance and trading, I bring a unique blend of stakeholder communication, system design, and pragmatic engineering. I care about code quality, testing (pytest), monitoring, and making systems that hold up under real load.
+                That long detour through requirements gathering, stakeholder communication and project delivery shapes how I build today: I&apos;m wary of LLM hallucinations in numeric outputs (so I designed deterministic risk scoring in AuditChain), I instrument systems to know exactly what each agent costs and how long it takes (custom observability across all 4 portfolio projects), and I test changes against curated eval sets instead of vibes.
+              </p>
+              <p>
+                I care about reliability, cost per inference, and being honest about what&apos;s measured versus what&apos;s assumed.
               </p>
               <p className="font-semibold text-zinc-300 text-xs p-3 bg-zinc-950/40 border border-zinc-900 rounded-lg inline-block">
-                Open to opportunities in AI Engineering — available to relocation.
+                Open to opportunities in AI Engineering.
               </p>
             </div>
 
@@ -763,7 +762,7 @@ export default function PortfolioPage() {
                 <div className="text-zinc-500 font-mono text-[11px] leading-none">
                   LangChain • pgvector • OpenAI
                 </div>
-                <span className="text-amber-500/70 text-[9px] font-medium italic">in development</span>
+                <span className="text-amber-500/70 text-[9px] font-medium italic">Coming soon</span>
               </div>
             </motion.div>
 
@@ -790,7 +789,7 @@ export default function PortfolioPage() {
                 <div className="text-zinc-500 font-mono text-[11px] leading-none">
                   FastAPI • Pydantic • Gemini
                 </div>
-                <span className="text-amber-500/70 text-[9px] font-medium italic">in development</span>
+                <span className="text-amber-500/70 text-[9px] font-medium italic">Coming soon</span>
               </div>
             </motion.div>
 
@@ -817,7 +816,7 @@ export default function PortfolioPage() {
                 <div className="text-zinc-500 font-mono text-[11px] leading-none">
                   Python • LangGraph • Docker
                 </div>
-                <span className="text-amber-500/70 text-[9px] font-medium italic">in development</span>
+                <span className="text-amber-500/70 text-[9px] font-medium italic">Coming soon</span>
               </div>
             </motion.div>
 
@@ -895,6 +894,49 @@ export default function PortfolioPage() {
           <span>Built with Next.js & Tailwind CSS</span>
         </div>
       </footer>
+
+      {/* DEMO ACCESS INFO MODAL */}
+      <AnimatePresence>
+        {demoAccessProject && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setDemoAccessProject(null)}
+              className="absolute inset-0 bg-[#02040a]/80 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="relative w-full max-w-sm bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl z-10"
+            >
+              <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-sky-400 to-emerald-400" />
+              <div className="p-6">
+                <button
+                  onClick={() => setDemoAccessProject(null)}
+                  className="absolute top-4 right-4 p-1 text-zinc-500 hover:text-zinc-200 transition-colors rounded-lg hover:bg-zinc-800"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+                <h3 className="text-base font-bold text-zinc-100 mb-2">{demoAccessProject}</h3>
+                <p className="text-zinc-400 text-xs leading-relaxed mb-4">
+                  To test this system, request a <span className="text-sky-400 font-semibold">Demo Access</span> by sending an email with your name and use case.
+                </p>
+                <a
+                  href={`mailto:lbarretti@gmail.com?subject=${demoAccessProject} - Demo Access Request`}
+                  onClick={() => setDemoAccessProject(null)}
+                  className="flex items-center justify-center gap-2 w-full py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold text-xs transition-colors"
+                >
+                  <Mail className="w-3.5 h-3.5" />
+                  lbarretti@gmail.com
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
