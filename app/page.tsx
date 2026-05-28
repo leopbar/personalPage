@@ -168,7 +168,7 @@ export default function PortfolioPage() {
             </div>
 
             <p className="text-zinc-400 text-sm md:text-base leading-relaxed max-w-xl">
-              I design and build production-grade AI systems — multi-agent pipelines, RAG, and self-correcting workflows with real observability and cost control. 20+ years as a Business Systems Analyst before transitioning into applied AI.
+              I design and build production-grade AI systems — multi-agent pipelines, RAG, and self-correcting workflows with real observability and cost control. 15+ years as a Business Systems Analyst before transitioning into applied AI.
             </p>
 
             <div className="flex flex-wrap items-center gap-3" id="hero-action-buttons">
@@ -565,7 +565,7 @@ export default function PortfolioPage() {
             {/* Extended text description */}
             <div className="md:col-span-8 space-y-4 text-zinc-400 text-sm leading-relaxed" id="about-left-col">
               <p>
-                I&apos;m an AI Engineer with an unusual background: 20+ years as a Business Systems Analyst in Brazilian enterprises — XP Investimentos, Petrobras, Accenture — followed by a deliberate transition into applied AI.
+                I&apos;m an AI Engineer with an unusual background: 15+ years as a Business Systems Analyst in Brazilian enterprises — XP Investimentos, Petrobras, Accenture — followed by a deliberate transition into applied AI.
               </p>
               <p>
                 That long detour through requirements gathering, stakeholder communication and project delivery shapes how I build today: I&apos;m wary of LLM hallucinations in numeric outputs (so I designed deterministic risk scoring in AuditChain), I instrument systems to know exactly what each agent costs and how long it takes (custom observability across all 4 portfolio projects), and I test changes against curated eval sets instead of vibes.
@@ -586,7 +586,7 @@ export default function PortfolioPage() {
                 </div>
                 <div>
                   <span className="text-[9px] text-zinc-500 block uppercase font-bold tracking-wider leading-none mb-0.5">Location</span>
-                  <span className="text-zinc-200 font-semibold">Brazil · Relocation OK</span>
+                  <span className="text-zinc-200 font-semibold">Brazil</span>
                 </div>
               </div>
 
