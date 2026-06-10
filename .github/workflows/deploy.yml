@@ -19,7 +19,7 @@ jobs:
           script: |
             cd /root/personalPage || git clone https://github.com/leopbar/personalPage.git /root/personalPage
             cd /root/personalPage
-            git pull origin main
+            git fetch origin && git reset --hard origin/main
             docker build -t personalpage .
             docker stop personalpage 2>/dev/null || true
             docker rm personalpage 2>/dev/null || true
