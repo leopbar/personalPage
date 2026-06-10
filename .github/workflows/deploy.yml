@@ -1,0 +1,30 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /root/personalPage || git clone https://github.com/leopbar/personalPage.git /root/personalPage
+            cd /root/personalPage
+            git pull origin main
+            docker build -t personalpage .
+            docker stop personalpage 2>/dev/null || true
+            docker rm personalpage 2>/dev/null || true
+            docker run -d \
+              --name personalpage \
+              --restart unless-stopped \
+              -p 3000:3000 \
+              personalpage
