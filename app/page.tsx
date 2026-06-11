@@ -321,7 +321,7 @@ export default function PortfolioPage() {
                       rel="noreferrer"
                       className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
                     >
-                      Live App <ExternalLink className="w-2.5 h-2.5" />
+                      Live Demo <ExternalLink className="w-2.5 h-2.5" />
                     </a>
                     <a
                       href="https://github.com/leopbar"
@@ -397,7 +397,7 @@ export default function PortfolioPage() {
                       rel="noreferrer"
                       className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
                     >
-                      Live App <ExternalLink className="w-2.5 h-2.5" />
+                      Live Demo <ExternalLink className="w-2.5 h-2.5" />
                     </a>
                     <a
                       href="https://github.com/leopbar"
@@ -463,7 +463,7 @@ export default function PortfolioPage() {
                     rel="noreferrer"
                     className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
                   >
-                    Live App <ExternalLink className="w-2.5 h-2.5" />
+                    Live Demo <ExternalLink className="w-2.5 h-2.5" />
                   </a>
                   <a
                     href="https://github.com/leopbar"
@@ -527,7 +527,7 @@ export default function PortfolioPage() {
                     rel="noreferrer"
                     className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
                   >
-                    Live App <ExternalLink className="w-2.5 h-2.5" />
+                    Live Demo <ExternalLink className="w-2.5 h-2.5" />
                   </a>
                   <a
                     href="https://github.com/leopbar"
