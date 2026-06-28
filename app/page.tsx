@@ -33,6 +33,7 @@ import {
 import Constellation from '../components/Constellation';
 import CronographMockup from '../components/CronographMockup';
 import InvoiceReaderMockup from '../components/InvoiceReaderMockup';
+import FilingsIQMockup from '../components/FilingsIQMockup';
 
 export default function PortfolioPage() {
   // Header active navigation states
@@ -421,7 +422,74 @@ export default function PortfolioPage() {
               </div>
             </motion.div>
 
-            {/* Card 3: AuditChain */}
+            {/* Card 3: FilingsIQ */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-[#080d1a] border border-[#152243]/70 rounded-xl overflow-hidden hover:border-[#223568] hover:shadow-xl hover:shadow-emerald-950/10 transition-all p-4 grid grid-cols-1 md:grid-cols-12 gap-5"
+              id="filingsiq-project-card"
+            >
+              {/* Graphic Mockup side */}
+              <div className="md:col-span-5 h-[160px] md:h-auto min-h-[150px]" id="filingsiq-mockup-wrapper">
+                <FilingsIQMockup />
+              </div>
+
+              {/* Information text details */}
+              <div className="md:col-span-7 flex flex-col justify-between space-y-4" id="filingsiq-details">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <h3 className="text-zinc-100 font-bold text-base tracking-tight hover:text-sky-400 transition-colors cursor-pointer">
+                      FilingsIQ
+                    </h3>
+                    <span className="bg-blue-500/10 text-blue-400 border border-blue-500/20 px-2 py-0.5 rounded-full text-[9px] font-semibold uppercase tracking-wider">
+                      Azure Cloud Live
+                    </span>
+                  </div>
+
+                  <p className="text-zinc-400 text-xs leading-relaxed">
+                    RAG system for "chatting" with SEC filings (10-Ks) with zero-hallucination grounding and inline source citations. Hybrid Azure AI Search (BM25 + vector + semantic re-ranker), a fine-tuned GPT-4o clause classifier (77.5% accuracy, up from 17.7% zero-shot), PII redaction via Document Intelligence, and RAGAS-evaluated quality gates running in production.
+                  </p>
+                </div>
+
+                {/* Tags lists */}
+                <div className="flex flex-wrap gap-1.5" id="filingsiq-tags">
+                  {['Azure OpenAI', 'Azure AI Search', 'FastAPI', 'Next.js', 'PySpark', 'RAGAS'].map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 bg-zinc-900 hover:bg-zinc-800 border border-zinc-800/80 text-zinc-300 rounded text-[11px] font-medium font-mono"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Buttons row */}
+                <div className="flex items-center justify-between pt-1 flex-wrap gap-2" id="filingsiq-actions">
+                  <div className="flex items-center gap-3">
+                    <a
+                      href="https://filingsiq-frontend.whitepebble-50a8bf56.eastus2.azurecontainerapps.io"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-[10px] text-sky-400 hover:text-sky-300 font-semibold transition-colors"
+                    >
+                      Live Demo <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                    <a
+                      href="https://github.com/leopbar/filingsiq"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex items-center gap-1 text-[10px] text-zinc-500 hover:text-zinc-300 font-semibold transition-colors"
+                    >
+                      GitHub <ExternalLink className="w-2.5 h-2.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 4: AuditChain */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -485,7 +553,7 @@ export default function PortfolioPage() {
               </div>
             </motion.div>
 
-            {/* Card 4: bitPredict */}
+            {/* Card 5: bitPredict */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
