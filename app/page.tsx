@@ -268,7 +268,7 @@ export default function PortfolioPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-8" id="featured-projects-grid">
+          <div className="grid grid-cols-1 gap-8" id="featured-projects-grid">
             
             {/* Card 1: Cronograph */}
             <motion.div 
